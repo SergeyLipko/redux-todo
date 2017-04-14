@@ -22,9 +22,17 @@ export const toggleTodo = id => {
   }
 };
 
-export const deleteTodo = id => {
+export const removeTodo = id => {
   return {
-    type: 'DELETE_TODO',
+    type: 'REMOVE_TODO',
     id
+  }
+};
+
+export const editTodo = (id, data) => {
+  return {
+    type: 'EDIT_TODO',
+    id,
+    data
   }
 };

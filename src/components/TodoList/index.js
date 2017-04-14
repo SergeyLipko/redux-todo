@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import Todo from '../Todo';
+import './style.sass';
 
 const TodoList = ({ todos, onTodoClick, onTodoRemove, onTodoEdit }) => (
-  <ul>
+  <ul className="todo-list-wrapper">
     {todos.map(todo =>
       <Todo
         key={todo.id}

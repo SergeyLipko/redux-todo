@@ -1,20 +1,42 @@
 import React, { PropTypes } from 'react';
-import classNames from 'classnames';
+import Checkbox from 'material-ui/Checkbox';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import './style.sass';
 
 const Todo = ({ onClick, onRemove, onEdit, completed, text }) => (
   <li className="todo-wrapper">
-    <div onClick={onClick}>
-      <p className={classNames(
-          'todo-body',
-          { 'completed': completed }
-        )}>
-        { text }
-      </p>
-    </div>
-    <button onClick={onRemove}>delete</button>
-    <button onClick={onEdit}>edit</button>
+    <div className="todo-left-side">
+      <div className="check-box-wrapper">
+        <Checkbox checked={completed} onCheck={onClick} />
+      </div>
 
+      <div className="text-wrapper">
+        <p className="todo-text">
+          { text }
+        </p>
+      </div>
+    </div>
+
+    <div className="todo-menu">
+      <IconMenu
+        iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+        anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+      >
+        <MenuItem
+          onTouchTap={onEdit}
+          primaryText="Edit"
+        />
+        <MenuItem
+          onTouchTap={onRemove}
+          primaryText="Remove"
+        />
+
+      </IconMenu>
+    </div>
   </li>
 );
 

@@ -5,12 +5,10 @@ import './style.sass';
 const Todo = ({ onClick, onRemove, onEdit, completed, text }) => (
   <li className="todo-wrapper">
     <div onClick={onClick}>
-      <p
-        className={classNames(
+      <p className={classNames(
           'todo-body',
           { 'completed': completed }
-        )}
-      >
+        )}>
         {text}
       </p>
     </div>

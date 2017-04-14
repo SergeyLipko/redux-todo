@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onTodoClick: id => dispatch(toggleTodo(id)),
   onTodoRemove: id => dispatch(removeTodo(id)),
-  onTodoEdit: (id, data) => dispatch(editTodo(id, data)),
+  onTodoEdit: id => dispatch(editTodo(id)),
 });
 
 const VisibleTodoList = connect(

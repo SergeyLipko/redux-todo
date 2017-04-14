@@ -11,7 +11,7 @@ import { loadState, saveState  } from './localStorage';
 const persistedState = loadState();
 const store = createStore(
   reducer,
-  persistedState
+  // persistedState
 );
 
 store.subscribe(throttle(() => {

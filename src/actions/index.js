@@ -29,10 +29,17 @@ export const removeTodo = id => {
   }
 };
 
-export const editTodo = (id, data) => {
+export const editTodo = id => {
   return {
     type: 'EDIT_TODO',
     id,
-    data
+  }
+};
+
+export const saveUpdatedTodo = (id, text) => {
+  return {
+    type: 'SAVE_UPDATED_TODO',
+    id,
+    text
   }
 };

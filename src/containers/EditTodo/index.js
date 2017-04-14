@@ -1,20 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TextField, RaisedButton } from 'material-ui';
 import classNames from 'classnames';
 
-import { saveUpdatedTodo } from '../../actions';
+import { saveUpdatedTodo, hideEditTodoBar } from '../../actions';
 import './style.sass';
 
 class EditTodo extends React.Component {
   state = {
-    newTodoValue: 'i am new todo'
+    newTodoValue: ''
   };
   
   render() {
     let { currentTodoId, isEditTodoBarOpen } = this.props;
     let { newTodoValue } = this.state;
-    
-    console.log(this.props.state);
 
     return (
       <div className={classNames(
@@ -24,34 +23,44 @@ class EditTodo extends React.Component {
           'edit-isHide': !isEditTodoBarOpen
         }
       )}>
-        edit todo
-        <input
-          onChange={e => this.handleChangeValue(e)}
+        <TextField
+          multiLine={true}
+          rowsMax={4}
+          underlineFocusStyle={{color: '#00bcd4'}}
+          onChange={this.handleChangeValue()}
           value={newTodoValue}
-          type="text"
-        />
-        <button onClick={() => this.handleTodoUpdating(currentTodoId)(newTodoValue)}>
-          super update todo!
-        </button>
+          hintText='Update todo'/>
+        <RaisedButton
+          primary={true}
+          onClick={() => this.handleTodoUpdating(currentTodoId, newTodoValue)}
+          label='Update'/>
       </div>
     )
   }
 
-  handleTodoUpdating = id => value => this.props.updateTodo(id, value);
+  handleTodoUpdating = (id, value) => {
+    this.props.updateTodo(id, value);
+    this.props.hideEditBar();
 
-  handleChangeValue = value => {
-    
+    this.setState ({
+      newTodoValue: ''
+    })
+  };
+
+  handleChangeValue = () => e => {
+    this.setState ({
+      newTodoValue: e.target.value
+    })
   }
 }
 
 const mapStateToProps = state => ({
-  isEditTodoBarOpen: state.editTodo.isShown,
-  currentTodoId: state.editTodo.currentTodoId,
-  state
+  isEditTodoBarOpen: state.editTodoBar.isShown,
+  currentTodoId: state.editTodoBar.currentTodoId
 });
 
 const mapDispatchToProps = dispatch => ({
-  // confirmTodoUpdating: data => dispatch(updateTodo(data)),
+  hideEditBar: () => dispatch(hideEditTodoBar()),
   updateTodo: (id, value) => dispatch(saveUpdatedTodo(id, value)),
 });
 

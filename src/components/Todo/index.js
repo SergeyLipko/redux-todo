@@ -9,7 +9,7 @@ const Todo = ({ onClick, onRemove, onEdit, completed, text }) => (
           'todo-body',
           { 'completed': completed }
         )}>
-        {text}
+        { text }
       </p>
     </div>
     <button onClick={onRemove}>delete</button>

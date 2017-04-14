@@ -3,17 +3,17 @@ const INITIAL_STATE = {
   currentTodoId: '',
 };
 
-const editTodo = (state = INITIAL_STATE, action) => {
+const editTodoBar = (state = INITIAL_STATE, action) => {
   switch (action.type) {
 
-    case 'EDIT_TODO':
+    case 'SHOW_EDIT_TODO_BAR':
       return {
         ...state,
         currentTodoId: action.id,
         isShown: true,
       };
 
-    case 'UPDATE_TODO':
+    case 'HIDE_EDIT_TODO_BAR':
       return {
         ...state,
         isShown: false
@@ -24,4 +24,4 @@ const editTodo = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default editTodo;
+export default editTodoBar;

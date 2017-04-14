@@ -29,10 +29,16 @@ export const removeTodo = id => {
   }
 };
 
-export const editTodo = id => {
+export const showEditTodoBar = id => {
   return {
-    type: 'EDIT_TODO',
+    type: 'SHOW_EDIT_TODO_BAR',
     id,
+  }
+};
+
+export const hideEditTodoBar = () => {
+  return {
+    type: 'HIDE_EDIT_TODO_BAR'
   }
 };
 

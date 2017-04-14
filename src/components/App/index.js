@@ -10,9 +10,9 @@ import './style.sass';
 const App = () => (
   <div className="spa-wrapper">
     <div className="app-wrapper">
-      <AddTodo />
-      <VisibleTodoList />
       <Footer />
+      <VisibleTodoList />
+      <AddTodo />
       <EditTodo />
     </div>
   </div>

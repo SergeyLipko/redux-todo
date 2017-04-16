@@ -4,6 +4,7 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import classNames from 'classnames';
 import './style.sass';
 
 const Todo = ({ onClick, onRemove, onEdit, completed, text }) => (
@@ -14,7 +15,7 @@ const Todo = ({ onClick, onRemove, onEdit, completed, text }) => (
       </div>
 
       <div className="text-wrapper">
-        <p className="todo-text">
+        <p className={classNames({'text-completed': completed})}>
           { text }
         </p>
       </div>

@@ -12,8 +12,10 @@ class EditTodo extends React.Component {
   };
   
   render() {
-    let { currentTodoId, isEditTodoBarOpen } = this.props;
+    let { currentTodoId, isEditTodoBarOpen, appTodos } = this.props;
     let { newTodoValue } = this.state;
+    
+    console.log(appTodos.filter(t => t.id === currentTodoId)[0]);
 
     return (
       <div className={classNames(
@@ -31,20 +33,23 @@ class EditTodo extends React.Component {
           value={newTodoValue}
           hintText='Update todo'/>
         <RaisedButton
+          className="edit-confirm-button"
           primary={true}
           onClick={() => this.handleTodoUpdating(currentTodoId, newTodoValue)}
-          label='Update'/>
+          label='Update todo'/>
       </div>
     )
   }
 
   handleTodoUpdating = (id, value) => {
-    this.props.updateTodo(id, value);
-    this.props.hideEditBar();
+    if (value.length !== 0) {
+      this.props.updateTodo(id, value);
+      this.props.hideEditBar();
 
-    this.setState ({
-      newTodoValue: ''
-    })
+      this.setState ({
+        newTodoValue: ''
+      })
+    }
   };
 
   handleChangeValue = () => e => {
@@ -56,7 +61,8 @@ class EditTodo extends React.Component {
 
 const mapStateToProps = state => ({
   isEditTodoBarOpen: state.editTodoBar.isShown,
-  currentTodoId: state.editTodoBar.currentTodoId
+  currentTodoId: state.editTodoBar.currentTodoId,
+  appTodos: state.todos,
 });
 
 const mapDispatchToProps = dispatch => ({

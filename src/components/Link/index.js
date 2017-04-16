@@ -1,20 +1,24 @@
 import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import './style.sass';
 
 const Link = ({ active, children, onClick }) => {
-  if (active) {
-    return <span>{children}</span>
-  }
-
   return (
-    <a href="#"
-       onClick={e => {
-         e.preventDefault();
-         onClick()
-       }}
-    >
-      {children}
-    </a>
-  )
+    <div className="link-wrapper">
+      <a href="#"
+         className={classNames(
+           'navigationLink',
+           {'linkIsActive': active}
+         )}
+         onClick={e => {
+           e.preventDefault();
+           onClick()
+         }}
+      >
+        {children}
+      </a>
+    </div>
+  );
 };
 
 Link.propTypes = {

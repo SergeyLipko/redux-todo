@@ -1,10 +1,23 @@
+@import '../../styles/utils/variables.sass'
+@import '../../styles/utils/mixins.sass'
+
 .edit-todo-wrapper
-  position: absolute
-  top: -200px
-  right: 0
+  position: fixed
+  top: 100px
+  left: 50%
+  z-index: 10
+  transform: translateX(-50%)
+  width: $app-width + 100px
+  height: 300px
+  background-color: $card-background
+  box-shadow: $card-box-shadow
+
 
 .edit-isShown
-  display: block
+  +flex-center
 
 .edit-isHide
   display: none
+
+.edit-confirm-button
+  margin-left: 35px

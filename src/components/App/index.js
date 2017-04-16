@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../Footer';
+import Header from '../Header';
 import EditTodo from '../../containers/EditTodo';
 import AddTodo from '../../containers/AddTodo';
 import VisibleTodoList from '../../containers/VisibleTodoList';
@@ -10,7 +10,7 @@ import './style.sass';
 const App = () => (
   <div className="spa-wrapper">
     <div className="app-wrapper">
-      <Footer />
+      <Header />
       <VisibleTodoList />
       <AddTodo />
       <EditTodo />

@@ -4,11 +4,13 @@
 .todo-wrapper
   +flex(space-between, flex-start)
   width: 100%
-  margin-bottom: 30px
+  margin-bottom: 20px
+  padding: 20px 15px
+  box-shadow: $todo-box-shadow
 
 .todo-left-side
   +flex(flex-start, flex-start)
-  width: 85%
+  width: 87%
 
 .check-box-wrapper
   width: 26px
@@ -17,8 +19,13 @@
 
 .text-wrapper
   p
+    font-size: 15px
     line-height: 23px
     font-weight: 300
+  .text-completed
+    text-decoration: line-through
+    color: $completed-todo-text
+
 
 .todo-menu
   margin-top: -12px

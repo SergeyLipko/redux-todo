@@ -1,32 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TextField, RaisedButton } from 'material-ui';
+
 import { addTodo } from '../../actions';
 import './style.sass';
 
-let AddTodo = ({ dispatch }) => {
-  let input;
+class AddTodo extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="add-todo-wrapper">
-      <form onSubmit={e => {
-        e.preventDefault();
-        if (!input.value.trim()) {
-          return
-        }
-        dispatch(addTodo(input.value));
-        input.value = ''
-      }}>
-        <input ref={node => {
-          input = node
-        }} />
-        <button type="submit">
-          Add Todo
-        </button>
-      </form>
-    </div>
-  )
-};
+    this.state = {
+      todoValue: ''
+    }
+  }
 
-AddTodo = connect()(AddTodo);
+  render() {
+    let { todoValue } = this.state;
 
-export default AddTodo;
+    return (
+      <div className="add-todo-wrapper">
+        <TextField
+          className="add-todo-field"
+          multiLine={true}
+          rowsMax={4}
+          underlineFocusStyle={{color: '#00bcd4'}}
+          onChange={this.handleChangeValue()}
+          value={todoValue}
+          hintText='New todo'/>
+
+        <RaisedButton
+          primary={true}
+          onClick={() => this.handleAddingTodo(todoValue)}
+          label='Add'/>
+      </div>
+    )
+  }
+
+  handleAddingTodo(todoValue) {
+    this.props.addNewTodo(todoValue);
+
+    this.setState({
+      todoValue: ''
+    })
+  };
+
+  handleChangeValue = () => e => {
+    this.setState ({
+      todoValue: e.target.value
+    })
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  addNewTodo: value => dispatch(addTodo(value))
+});
+
+export default connect(null, mapDispatchToProps)(AddTodo);

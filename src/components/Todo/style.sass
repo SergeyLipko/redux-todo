@@ -1,7 +1,33 @@
 @import '../../styles/utils/variables.sass'
+@import '../../styles/utils/mixins.sass'
 
 .todo-wrapper
-  margin-bottom: 10px
+  +flex(space-between, flex-start)
+  width: 100%
+  margin-bottom: 20px
+  padding: 20px 15px
+  box-shadow: $todo-box-shadow
 
-.completed
-  text-decoration: line-through
+.todo-left-side
+  +flex(flex-start, flex-start)
+  width: 87%
+
+.check-box-wrapper
+  width: 26px
+  height: 26px
+  margin: 2px 10px 0 0
+
+.text-wrapper
+  p
+    font-size: 15px
+    line-height: 24px
+    font-weight: 300
+  .text-completed
+    text-decoration: line-through
+    color: $completed-todo-text
+
+
+.todo-menu
+  margin-top: -12px
+
+

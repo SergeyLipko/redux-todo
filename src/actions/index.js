@@ -1,9 +1,9 @@
-let nextTodoId = 0;
+import { v4 } from 'node-uuid';
 
 export const addTodo = text => {
   return {
     type: 'ADD_TODO',
-    id: nextTodoId++,
+    id: v4(),
     text
   }
 };
@@ -22,9 +22,30 @@ export const toggleTodo = id => {
   }
 };
 
-export const deleteTodo = id => {
+export const removeTodo = id => {
   return {
-    type: 'DELETE_TODO',
+    type: 'REMOVE_TODO',
     id
+  }
+};
+
+export const showEditTodoBar = id => {
+  return {
+    type: 'SHOW_EDIT_TODO_BAR',
+    id,
+  }
+};
+
+export const hideEditTodoBar = () => {
+  return {
+    type: 'HIDE_EDIT_TODO_BAR'
+  }
+};
+
+export const saveUpdatedTodo = (id, text) => {
+  return {
+    type: 'SAVE_UPDATED_TODO',
+    id,
+    text
   }
 };

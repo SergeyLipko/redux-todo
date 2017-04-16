@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react';
-import Todo from './Todo';
+import Todo from '../Todo';
+import './style.sass';
 
-const TodoList = ({ todos, onTodoClick, deleteTodo }) => (
-  <ul>
+const TodoList = ({ todos, onTodoClick, onTodoRemove, onTodoEdit }) => (
+  <ul className="todo-list-wrapper">
     {todos.map(todo =>
       <Todo
         key={todo.id}
         {...todo}
-        deleteTodoItem={() => deleteTodo(todo.id)}
+        onRemove={() => onTodoRemove(todo.id)}
+        onEdit={() => onTodoEdit(todo.id)}
         onClick={() => onTodoClick(todo.id)}
       />
     )}
@@ -16,12 +18,13 @@ const TodoList = ({ todos, onTodoClick, deleteTodo }) => (
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired).isRequired,
   onTodoClick: PropTypes.func.isRequired,
-  deleteTodo: PropTypes.func.isRequired,
+  onTodoRemove: PropTypes.func.isRequired,
+  onTodoEdit: PropTypes.func.isRequired,
 };
 
 export default TodoList;

@@ -20,8 +20,7 @@ class EditTodo extends React.Component {
     let { currentTodoId } = nextProps;
 
     this.setState((state, props) => ({
-      newTodoValue: props.appTodos && currentTodoId && props.appTodos
-        .filter(t => t.id === currentTodoId)[0].text
+      newTodoValue: props.appTodos.filter(t => t.id === currentTodoId)[0].text
     }));
   }
   
@@ -44,12 +43,14 @@ class EditTodo extends React.Component {
           underlineFocusStyle={{color: '#00bcd4'}}
           onChange={this.handleChangeValue()}
           value={newTodoValue}
-          hintText='Update todo'/>
+          hintText='Update todo'
+        />
         <RaisedButton
           className="edit-confirm-button"
           secondary={true}
           onClick={() => this.handleTodoUpdating(currentTodoId, newTodoValue)}
-          label='Update todo'/>
+          label='Update todo'
+        />
 
         <button
           onClick={() => this.props.hideEditBar()}

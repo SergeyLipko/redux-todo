@@ -21,7 +21,7 @@ store.subscribe(throttle(() => {
   saveState({
     todos: store.getState().todos
   });
-}, 1000)) ;
+}, 1000));
 
 render(
   <MuiThemeProvider>

@@ -33,9 +33,7 @@ const todos = (state = [], action) => {
       ];
 
     case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      );
+      return state.map(t => todo(t, action));
 
     case 'REMOVE_TODO':
       return state.filter(t => t.id !== action.id);

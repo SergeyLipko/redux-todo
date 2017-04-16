@@ -1,22 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { TextField, RaisedButton } from 'material-ui';
+import Clear from 'material-ui/svg-icons/content/clear';
 import classNames from 'classnames';
 
 import { saveUpdatedTodo, hideEditTodoBar } from '../../actions';
 import './style.sass';
 
 class EditTodo extends React.Component {
-  state = {
-    newTodoValue: ''
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      newTodoValue: ''
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { currentTodoId } = nextProps;
+
+    this.setState((state, props) => ({
+      newTodoValue: props.appTodos.filter(t => t.id === currentTodoId)[0].text
+    }));
+  }
   
   render() {
-    let { currentTodoId, isEditTodoBarOpen, appTodos } = this.props;
+    let { currentTodoId, isEditTodoBarOpen } = this.props;
     let { newTodoValue } = this.state;
     
-    console.log(appTodos.filter(t => t.id === currentTodoId)[0]);
-
     return (
       <div className={classNames(
         'edit-todo-wrapper',
@@ -26,8 +37,9 @@ class EditTodo extends React.Component {
         }
       )}>
         <TextField
+          className="edit-todo-field"
           multiLine={true}
-          rowsMax={4}
+          rowsMax={10}
           underlineFocusStyle={{color: '#00bcd4'}}
           onChange={this.handleChangeValue()}
           value={newTodoValue}
@@ -37,6 +49,14 @@ class EditTodo extends React.Component {
           primary={true}
           onClick={() => this.handleTodoUpdating(currentTodoId, newTodoValue)}
           label='Update todo'/>
+
+        <button
+          onClick={() => this.props.hideEditBar()}
+          type="button"
+          className="close-button"
+        >
+          <Clear className="close-button-icon"/>
+        </button>
       </div>
     )
   }
@@ -48,7 +68,7 @@ class EditTodo extends React.Component {
 
       this.setState ({
         newTodoValue: ''
-      })
+      });
     }
   };
 
